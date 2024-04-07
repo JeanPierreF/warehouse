@@ -27,19 +27,19 @@ The packages come in 4 sizes:
 |-----------------|----------------|---------------|---------------|--------------|------------|----------|
 | Package Reference | Length (cm) | Width (cm) | Height (cm) | Palletizable | Occupancy | Storage |
 |-----------------|----------------|---------------|---------------|--------------|------------|----------|
-| D               | 40             | 30            | 20            | oui          | 1          | court    |
-| B               | 40             | 30            | 40            | oui          | 2          | court    |
-| C               | 60             | 30            | 20            | non          | 1          | long     |
-| A               | 60             | 30            | 40            | non          | 2          | long     |
+| D               | 40             | 30            | 20            | oui/yes          | 1          | court/short    |
+| B               | 40             | 30            | 40            | oui/yes          | 2          | court/short    |
+| C               | 60             | 30            | 20            | non/no          | 1          | long     |
+| A               | 60             | 30            | 40            | non/no          | 2          | long     |
 
 
 palettisable : tailles et dispostions optimisées pour couvrir la surface d'une palette de type Europ (80cm x 120cm).
 
-Palletizable: Optimized sizes and arrangements to cover the surface of a Europ pallet (80cm x 120cm).
+Palletizable : Optimized sizes and arrangements to cover the surface of a Europ pallet (80cm x 120cm).
 
-occupation : chaque élément de stockage est composé de 4 cellules l'une au dessus de l'autre, de taille 2 en hauteur. La largeur et la profondeurs sont celles du colis.
+Occupation : chaque élément de stockage est composé de 4 cellules l'une au dessus de l'autre, de taille 2 en hauteur. les colis d'occupation 1 remplissent la mointier d'une cellule et de d'occupation 2 remplissent la totalité de la cellule. La largeur et la profondeurs sont celles du colis.
 
-Occupation: Each storage unit consists of 4 cells stacked on top of each other, each 2 units in height. The width and depth are those of the package.
+Occupancy: each storage element is made up of 4 cells one above the other, size 2 in height. occupancy 1 packages fill half of a cell and occupancy 2 packages fill the entire cell. The width and depth are those of the package.
 
 Stockage :  Défini la profondeur du rayonnage.
 
