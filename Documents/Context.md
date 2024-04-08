@@ -46,5 +46,6 @@ Stockage :  Défini la profondeur du rayonnage.
 Storage: Defines the depth of the shelving.
 
 ![Paletisation](./asset/36118.webp)
+![Stockage](./asset/cellule_de_stockage.webp)
 
 
