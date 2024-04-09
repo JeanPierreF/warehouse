@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\ProduitsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitsRepository::class)]
 class Produits
 {
+    use CreatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -16,11 +19,16 @@ class Produits
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+/*     #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null; */
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?packages $id_packages = null;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -38,7 +46,7 @@ class Produits
 
         return $this;
     }
-
+/* 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -49,7 +57,7 @@ class Produits
         $this->created_at = $created_at;
 
         return $this;
-    }
+    } */
 
     public function getIdPackages(): ?packages
     {
