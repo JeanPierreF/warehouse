@@ -10,15 +10,30 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
+
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if app.user %}
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Option 1</a>
+                    <a class="nav-link" href="#">My account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Option 2</a>
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                 </li>
+
+                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Option 3</a>
+                    <a class="nav-link" href="{{ path('app_register') }}">sign in</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                </li>
+
+                {% endif %}
+
+
             </ul>
         </div>
     </div>
