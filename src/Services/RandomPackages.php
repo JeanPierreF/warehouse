@@ -8,7 +8,7 @@ use Exception;
 
 
 /**Sélectionne un carton au hasard dans la table 'Packages' est retourne son id.
-Cette classe sert pour remplir le champs 'id_packages' de la table 'Products' lors des fixtures */
+Cette classe sert à remplir le champs 'id_packages' de la table 'Products' lors des fixtures */
 /**Selects a box at random from the 'Packages' table and returns its id.
 This class is used to fill the 'id_packages' field of the 'Products' table during fixtures */
 
