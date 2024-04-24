@@ -35,6 +35,8 @@ class Products
     {
         $this->orders = new ArrayCollection();
         $this->packagings = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
+
     }
 
     public function getId(): ?int

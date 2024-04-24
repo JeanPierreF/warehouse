@@ -6,7 +6,6 @@ use App\Entity\Packages;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 
-use function PHPUnit\Framework\throwException;
 
 /**Sélectionne un carton au hasard dans la table 'Packages' est retourne son id.
 Cette classe sert pour remplir le champs 'id_packages' de la table 'Products' lors des fixtures */
@@ -23,7 +22,7 @@ Class RandomPackages
         $this->entityManager = $entityManager;
     }
 
-    public function getRandomPackagesId(): int
+    public function getRandomPackagesId(): ?int
     {
                 // Récupérer un ID aléatoire à partir de la base de données
                 // Retrieve random ID from database

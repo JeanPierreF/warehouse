@@ -19,7 +19,7 @@ class PackagesFixtures extends Fixture
         $manager->flush();
     }
 
-    public function createPackage(string $reference, int $length, int $width, int $height, bool $palletizable = false, int $occupancy = 1, string $storage, ObjectManager $manager )
+    public function createPackage(string $reference, int $length, int $width, int $height, bool $palletizable, int $occupancy, string $storage, ObjectManager $manager )
     {
         $packages = new Packages();
         $packages->setReference($reference);
