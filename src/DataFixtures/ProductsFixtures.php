@@ -7,6 +7,7 @@ use App\Entity\Products;
 use App\Services\RandomPackages;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker;
 
 class ProductsFixtures extends Fixture
 {
@@ -18,25 +19,36 @@ class ProductsFixtures extends Fixture
     }
 
     public function load(ObjectManager $manager): void
-    {
-        $product = new Products();
-        $product->setName('Example Product');
+    {   
+        $faker = Faker\Factory::create('fr_FR');
 
-        $randomPackageId = $this->randomPackagesService->getRandomPackagesId();
 
-        if ($randomPackageId !== null) {
-            $randomPackage = $manager->getRepository(Packages::class)->find($randomPackageId);
 
-            if ($randomPackage !== null) {
-                $product->setIdPackages($randomPackage);
+        for($pdt = 1; $pdt <= 20; $pdt++){
+            
+            $product = new Products();
+    
+            $product->setName($faker->text(20));
+    
+            $randomPackageId = $this->randomPackagesService->getRandomPackagesId();
+    
+            if ($randomPackageId !== null) {
+                $randomPackage = $manager->getRepository(Packages::class)->find($randomPackageId);
+    
+                if ($randomPackage !== null) {
+                    $product->setIdPackages($randomPackage);
+                } else {
+                    throw new \RuntimeException('Package not found with ID: ' . $randomPackageId);
+                }
             } else {
-                throw new \RuntimeException('Package not found with ID: ' . $randomPackageId);
+                throw new \RuntimeException('No packages available to assign to product');
             }
-        } else {
-            throw new \RuntimeException('No packages available to assign to product');
+    
+            $manager->persist($product);
         }
 
-        $manager->persist($product);
+
+
         $manager->flush();
     }
 }
