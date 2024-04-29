@@ -14,6 +14,7 @@ class ProductsController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(ProductsRepository $productsRepository): Response
     {
+       
         return $this->render('products/index.html.twig', 
         [
             'products' => $productsRepository->findAll()

@@ -3,16 +3,40 @@
 {% block title %}Hello ProductsController!{% endblock %}
 
 {% block body %}
-<h1>Liste des produits</h1>
 
-<ul>
- 
-        {% for product in products %}
-        <li>{{ product.id }} {{ product.name }} </li>
-            
-        {% endfor %}
 
-</ul>
+
+
+<div class="container">
+
+        <div class="row">
+                <h1>Liste des produits</h1>
+
+
+
+                <table class="table table-succes table-striped-columns">
+                        <thead>
+                                <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Product name</th>
+                                        <th scope="col">Created at</th>
+                                </tr>
+
+
+                        </thead>
+                        {% for product in products %}
+                        <tr>
+                                <th scope="row">{{ product.id }}</th>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.getCreatedAt| format_datetime('short','short', locale='fr') }}</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+
+        </div>
+</div>
+
+
 
 
 {% endblock %}
