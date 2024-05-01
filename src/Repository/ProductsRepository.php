@@ -21,6 +21,20 @@ class ProductsRepository extends ServiceEntityRepository
         parent::__construct($registry, Products::class);
     }
 
+
+    public function findProductsWithPackage()
+    {
+        $entityManager = $this->getEntityManager();
+    
+        $query = $entityManager->createQueryBuilder()
+            ->select('p.id', 'p.name', 'p.created_at', 'pkg.reference as package_reference')
+            ->from('App\Entity\Products', 'p')
+            ->leftJoin('p.id_packages', 'pkg')
+            ->getQuery();
+    
+        return $query->execute();
+    }
+
     //    /**
     //     * @return Products[] Returns an array of Products objects
     //     */

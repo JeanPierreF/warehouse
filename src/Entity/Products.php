@@ -21,9 +21,6 @@ class Products
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-/*     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private ?\DateTimeImmutable $created_at = null; */
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?packages $id_packages = null;
@@ -58,18 +55,6 @@ class Products
 
         return $this;
     }
-
-/*     public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    } */
 
     public function getIdPackages(): ?packages
     {

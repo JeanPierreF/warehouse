@@ -15,13 +15,19 @@ class ProductsController extends AbstractController
     public function index(ProductsRepository $productsRepository): Response
     {
        
+/*         $produits = $productsRepository->findProductsWithPackage();
+
+        // Utilisation de dd() pour afficher les produits
+        dd($produits); */
+
+
         return $this->render('products/index.html.twig', 
         [
-            'products' => $productsRepository->findAll()
+            'products' => $productsRepository->findProductsWithPackage()
         ]);
     }
 
-    #[Route('/{id}', name: 'detail')]
+     #[Route('/{id}', name: 'detail')]
     public function detail(Products $product): Response
     {
         return $this->render('products/product.html.twig', compact('product'));

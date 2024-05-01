@@ -5,34 +5,32 @@
 {% block body %}
 
 
-
-
 <div class="container">
-
         <div class="row">
                 <h1>Liste des produits</h1>
-
-
-
-                <table class="table table-succes table-striped-columns">
+                <table class="table table-succes table-striped">
                         <thead>
                                 <tr>
                                         <th scope="col">Id</th>
                                         <th scope="col">Product name</th>
-                                        <th scope="col">Created at</th>
+                                        <th scope="col">Package</th>
+                                        <th scope="col">Date de Création</th>
+                                        <th scope="col">Action</th>
+
                                 </tr>
 
 
                         </thead>
                         {% for product in products %}
                         <tr>
-                                <th scope="row">{{ product.id }}</th>
+                                <td>{{ product.id }}</td>
                                 <td>{{ product.name }}</td>
-                                <td>{{ product.getCreatedAt| format_datetime('short','short', locale='fr') }}</td>
+                                <td>{{ product.package_reference }}</td>
+                                <td>{{ product.created_at ? product.created_at|date('Y-m-d H:i:s', 'Europe/Paris') : 'N/A' }}</td>
+                                <td><a href="" class="btn btn-secondary">Modifier</a></td>
                         </tr>
                         {% endfor %}
                 </table>
-
         </div>
 </div>
 
