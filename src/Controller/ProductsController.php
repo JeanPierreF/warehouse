@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Form\ProductsType;
 use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,21 +16,26 @@ class ProductsController extends AbstractController
     public function index(ProductsRepository $productsRepository): Response
     {
        
-/*         $produits = $productsRepository->findProductsWithPackage();
-
-        // Utilisation de dd() pour afficher les produits
-        dd($produits); */
-
-
         return $this->render('products/index.html.twig', 
         [
             'products' => $productsRepository->findProductsWithPackage()
         ]);
     }
 
-     #[Route('/{id}', name: 'detail')]
+     #[Route('/{id}', name: 'detail', requirements: ['id' => '\d+'])]
     public function detail(Products $product): Response
     {
         return $this->render('products/product.html.twig', compact('product'));
     }
+
+    #[Route('/edit/{id}', name:'edit')]
+    public function edit(Products $products): Response
+    {
+        $form = $this->createForm(ProductsType::class, $products);
+        return $this->render('products/edit.html.twig', [
+            'products' => $products,
+            'formedit' => $form
+        ]);
+    }
+
 }
