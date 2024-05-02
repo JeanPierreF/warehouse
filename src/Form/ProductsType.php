@@ -6,6 +6,7 @@ use App\Entity\packages;
 use App\Entity\Products;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,13 +16,14 @@ class ProductsType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('created_at', null, [
+/*             ->add('created_at', null, [
                 'widget' => 'single_text',
-            ])
+            ]) */
             ->add('id_packages', EntityType::class, [
                 'class' => packages::class,
-                'choice_label' => 'id',
+                'choice_label' => 'reference',
             ])
+            ->add('Enregistrer', SubmitType::class)
         ;
     }
 
