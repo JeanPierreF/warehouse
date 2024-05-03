@@ -22,7 +22,7 @@ class Products
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 3)]
-    private ?string $name = null;
+    private ?string $name = '';
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]

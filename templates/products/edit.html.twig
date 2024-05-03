@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <h1>{{ products.name }} </h1>
-        <h2>{{ products.createdat ? products.createdat|date('d-m-Y H:i:s', 'Europe/Paris') : 'N/A' }}</h2>
+        <p>{{ products.createdat ? products.createdat|date('d-m-Y H:i:s', 'Europe/Paris') : 'N/A' }}</p>
         
         {{ form(formedit) }}
         
