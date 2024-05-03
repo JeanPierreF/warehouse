@@ -20,7 +20,8 @@ class Products
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    /* #[Assert\Length(min: 3, max: 255, minMessage: 'Pour le nom des produits il faut 3 carartéres minimun.', maxMessage: 'Pour le nom des produits il faut 255 carartéres maximun.')]     */
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 3)]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
