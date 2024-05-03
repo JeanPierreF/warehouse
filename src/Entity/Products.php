@@ -7,6 +7,7 @@ use App\Repository\ProductsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+Use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
 class Products
@@ -19,6 +20,7 @@ class Products
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    /* #[Assert\Length(min: 3, max: 255, minMessage: 'Pour le nom des produits il faut 3 carartéres minimun.', maxMessage: 'Pour le nom des produits il faut 255 carartéres maximun.')]     */
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
