@@ -49,4 +49,24 @@ class OrdersController extends AbstractController
             'formedit' => $form
         ]);
     }
+
+    
+    #[Route('/add', name: 'add')]
+    public function add(Request $request, EntityManagerInterface $em): Response
+    {
+        $orders = new Orders() ;
+        
+        $form = $this->createForm(OrdersType::class, $orders);
+        $form->handleRequest($request);
+
+        if( $form->isSubmitted() && $form->isValid()){
+            $em->persist($orders);
+            $em->flush();
+            $this->addFlash('success','Modification enregistrée');
+            return $this->redirectToRoute('orders_index');
+        }
+        return $this->render('orders/add.html.twig', [
+            'formedit' => $form
+        ]);
+    }
 }
