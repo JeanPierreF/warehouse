@@ -40,33 +40,36 @@
         <tr>
             <th>
                 ID
-                <a href="{{ path('orders_', {'sort': 'id', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_', {'sort': 'id', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'desc' ? 'selected' : '' }}" >▼</a>
+                <a href="{{ path('orders_index', {'sort': 'id', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'id', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'desc' ? 'selected' : '' }}" >▼</a>
             </th>
             <th>
                 Date de la commande
-                <a href="{{ path('orders_', {'sort': 'date_order', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'date_order' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_', {'sort': 'date_order', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'date_order' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+                <a href="{{ path('orders_index', {'sort': 'date_order', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'date_order' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'date_order', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'date_order' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
             </th>
             <th>
                 Nom du fournisseur
-                <a href="{{ path('orders_', {'sort': 'supplier_name', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'supplier_name' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_', {'sort': 'supplier_name', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'supplier_name' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+                <a href="{{ path('orders_index', {'sort': 'supplier_name', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'supplier_name' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'supplier_name', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'supplier_name' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
             </th>
             <th>
                 Quantité commandée
-                <a href="{{ path('orders_', {'sort': 'quantity_order', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'quantity_order' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_', {'sort': 'quantity_order', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'quantity_order' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+                <a href="{{ path('orders_index', {'sort': 'quantity_order', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'quantity_order' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'quantity_order', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'quantity_order' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
             </th>
             <th>
                 Nom du produit
-                <a href="{{ path('orders_', {'sort': 'id_products', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id_products' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_', {'sort': 'id_products', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id_products' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+                <a href="{{ path('orders_index', {'sort': 'id_products', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id_products' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'id_products', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id_products' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
             </th>
             <th>
                 Date de livraison
-                <a href="{{ path('orders_', {'sort': 'delivered_at', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'delivered_at' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_', {'sort': 'delivered_at', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'delivered_at' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+                <a href="{{ path('orders_index', {'sort': 'delivered_at', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'delivered_at' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'delivered_at', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'delivered_at' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Action
             </th>
         </tr>
     </thead>
@@ -78,6 +81,7 @@
         <td>{{ order.getQuantityOrder() }}</td>
         <td>{{ order.getIdProducts().getName() }}</td>
         <td>{{ order.getDeliveredAt() is not null ? order.getDeliveredAt()|date('d-m-Y', 'Europe/Paris') : 'Non livré' }}</td>
+        <td><a href={{ path('orders_edit', { id:order.id } )}} class="btn btn-primary bt-sm">Modifier</a></td>
     </tr>
     {% endfor %}
 </table>

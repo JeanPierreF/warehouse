@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Produit{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h1>{{ orders.id }} </h1>
+        <p>{{ orders.getDateOrder ? orders.getDateOrder|date('d-m-Y H:i:s', 'Europe/Paris') : 'N/A' }}</p>
+        
+        {{ form(formedit) }}
+        
+    </div>
+</div>
+
+
+
+{% endblock %}
