@@ -6,10 +6,11 @@ use App\Entity\Packages;
 use App\Entity\Products;
 use App\Services\RandomPackages;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class ProductsFixtures extends Fixture
+class ProductsFixtures extends Fixture implements DependentFixtureInterface
 {
     private RandomPackages $randomPackagesService;
 
@@ -50,5 +51,10 @@ class ProductsFixtures extends Fixture
 
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [PackagesFixtures::class];
     }
 }
