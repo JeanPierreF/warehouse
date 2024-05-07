@@ -22,7 +22,7 @@ Class RandomProducts
         $this->entityManager = $entityManager;
     }
 
-    public function getRandomPackagesId(): ?int
+    public function getRandomProductId(): ?int
     {
                 // Récupérer un ID aléatoire à partir de la base de données
                 // Retrieve random ID from database

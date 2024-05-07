@@ -29,7 +29,7 @@ class OrdersFixtures extends Fixture implements DependentFixtureInterface
             /* $order->setDateOrder(new \DateTimeImmutable); */
             $order->setSupplierName($faker->company());
 
-            $randomProductsId = $this->randomProductsService->getRandomPackagesId();
+            $randomProductsId = $this->randomProductsService->getRandomProductId();
 
             if ($randomProductsId !== null){
 
