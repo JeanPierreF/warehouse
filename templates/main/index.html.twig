@@ -8,5 +8,36 @@
 </h1>
 <p>{{ "now"|date("d/m/Y H:i:s", "europe/paris") }}</p>
 <br>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur nihil quas, quod eius exercitationem consectetur! Ex nisi recusandae reiciendis consectetur culpa alias voluptatibus omnis dolore modi magnam veritatis nostrum blanditiis corrupti ipsa pariatur, corporis temporibus rerum provident ducimus. Blanditiis illum recusandae ducimus quae porro quo quod libero facilis at asperiores repellendus nobis assumenda corporis alias quasi totam, distinctio officia. Perspiciatis, quam quae odit, aliquid fugiat dolor aliquam quidem labore et eum illum molestias. Distinctio deserunt facere repellendus facilis eius doloremque iure ipsum, minus non, eveniet, ex quas quod deleniti fugit reiciendis ullam laudantium dolor atque. Porro, blanditiis delectus? Dignissimos, tempore cum quo, maxime ipsum illum, laboriosam dolore cupiditate commodi ullam explicabo. Natus veniam vero atque impedit odit ipsam cumque velit aspernatur possimus? Cumque sit, fugit in adipisci explicabo quas. Laborum sit laudantium fugit sint nobis labore modi reiciendis mollitia alias eos velit id ab animi quia placeat consectetur accusamus incidunt eum est autem pariatur, quidem fugiat. Beatae eius atque repudiandae minus, saepe amet sint odio aliquam est ut. Nulla numquam, mollitia deserunt ad adipisci temporibus nemo? Nisi mollitia, sed nobis tempora nam, asperiores expedita voluptatibus amet laboriosam facilis dolorum? Veritatis magnam unde ipsa, dicta nobis quam consequatur praesentium libero blanditiis illum rem quos suscipit obcaecati voluptas neque eum consectetur reiciendis ut aliquam, sapiente ad fugit soluta optio maiores! Libero recusandae harum nulla, inventore mollitia eum. Quisquam voluptatem quasi praesentium provident fuga facere laudantium consectetur, sequi adipisci aliquid quibusdam molestiae ullam veritatis exercitationem beatae eveniet sit eaque maxime nobis repellendus reiciendis cumque repudiandae? Earum ipsa cumque similique dolorem sapiente maiores mollitia repellat, sit doloribus! Aspernatur nam rem natus et accusantium, ratione ipsam nobis quos expedita soluta esse eum! Corrupti, fugiat explicabo facere, veritatis expedita, animi quaerat asperiores inventore ut fugit totam nemo vel eligendi molestias culpa reiciendis commodi! Dolores, tempore deserunt.</p>
+
+{% set a = results['orderQty'] %}
+{% set b = results['qtyMax'] %}
+
+<p>{{ results['refParcel']}} {{results['pdtName'] }}</p>
+<p> Nombre cartons : {{ (a / b)|round(0, 'floor') }}</p>
+<p>The remainder of {{ a }} divided by {{ b }} is {{ a%b }}.</p>
+
+
+<br>
+<br>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur nihil quas, quod eius exercitationem
+    consectetur! Ex nisi recusandae reiciendis consectetur culpa alias voluptatibus omnis dolore modi magnam veritatis
+    nostrum blanditiis corrupti ipsa pariatur, corporis temporibus rerum provident ducimus. Blanditiis illum recusandae
+    ducimus quae porro quo quod libero facilis at asperiores repellendus nobis assumenda corporis alias quasi totam,
+    distinctio officia. Perspiciatis, quam quae odit, aliquid fugiat dolor aliquam quidem labore et eum illum molestias.
+    Distinctio deserunt facere repellendus facilis eius doloremque iure ipsum, minus non, eveniet, ex quas quod deleniti
+    fugit reiciendis ullam laudantium dolor atque. Porro, blanditiis delectus? Dignissimos, tempore cum quo, maxime
+    ipsum illum, laboriosam dolore cupiditate commodi ullam explicabo. Natus veniam vero atque impedit odit ipsam cumque
+    velit aspernatur possimus? Cumque sit, fugit in adipisci explicabo quas. Laborum sit laudantium fugit sint nobis
+    labore modi reiciendis mollitia alias eos velit id ab animi quia placeat consectetur accusamus incidunt eum est
+    autem pariatur, quidem fugiat. Beatae eius atque repudiandae minus, saepe amet sint odio aliquam est ut. Nulla
+    numquam, mollitia deserunt ad adipisci temporibus nemo? Nisi mollitia, sed nobis tempora nam, asperiores expedita
+    voluptatibus amet laboriosam facilis dolorum? Veritatis magnam unde ipsa, dicta nobis quam consequatur praesentium
+    libero blanditiis illum rem quos suscipit obcaecati voluptas neque eum consectetur reiciendis ut aliquam, sapiente
+    ad fugit soluta optio maiores! Libero recusandae harum nulla, inventore mollitia eum. Quisquam voluptatem quasi
+    praesentium provident fuga facere laudantium consectetur, sequi adipisci aliquid quibusdam molestiae ullam veritatis
+    exercitationem beatae eveniet sit eaque maxime nobis repellendus reiciendis cumque repudiandae? Earum ipsa cumque
+    similique dolorem sapiente maiores mollitia repellat, sit doloribus! Aspernatur nam rem natus et accusantium,
+    ratione ipsam nobis quos expedita soluta esse eum! Corrupti, fugiat explicabo facere, veritatis expedita, animi
+    quaerat asperiores inventore ut fugit totam nemo vel eligendi molestias culpa reiciendis commodi! Dolores, tempore
+    deserunt.</p>
 {% endblock %}
