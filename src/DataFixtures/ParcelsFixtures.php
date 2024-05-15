@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Orders;
 use App\Entity\Parcels;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -21,22 +22,17 @@ class ParcelsFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        
+        $orderRepository = $manager->getRepository(Orders::class);
+
+        $orders = $orderRepository->findBy( [], ['id' => 'ASC'], $limit = 4, $offset = null);
+        
+        
         $parcel = new Parcels();
 
-        $qb = $this->em->createQueryBuilder();
 
-        $qb->select('o.id AS cmdId', 'o.quantity_order AS orderQty', 'p.name AS pdtName', 'pa.reference AS refParcel', 'pa.occupancy AS occupancy', 'pa.storage AS storage','pack.id AS packId' ,'pack.quantity_max AS qtyMax')
-           ->from('App\Entity\Orders', 'o')
-           ->leftJoin('App\Entity\Products', 'p', 'WITH', 'o.id_products = p.id')
-           ->leftJoin('App\Entity\Packages', 'pa', 'WITH', 'p.id_packages = pa.id')
-           ->leftJoin('App\Entity\Packagings', 'pack', 'WITH', 'pack.id_packages = pa.id')
-           ->where('o.id = :orderId')
-           ->andWhere('pack.id_product = o.id_products');
 
-        $query = $qb->getQuery();
-        $query->setParameter('orderId', 356);
-
-        $results = $query->getSingleResult();
+        $results = $this->getDataParcel();
 
         $qtyMax = $results['qtyMax'];
         $orderQty = $results['orderQty'];
@@ -54,7 +50,11 @@ class ParcelsFixtures extends Fixture implements DependentFixtureInterface
 
         if ($finishParcel > 0){
             $totalOfParcels = $numberOfParcels++ ;
+        }else{
+            $totalOfParcels = $numberOfParcels; 
         }
+
+
 
 
     
@@ -63,6 +63,24 @@ class ParcelsFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [ProductsFixtures::class, PackagesFixtures::class];
+        return [OrdersFixtures::class, PackagingsFixtures::class];
+    }
+
+    public function getDataParcel()
+    {
+        $qb = $this->em->createQueryBuilder();
+
+        $qb->select('o.id AS cmdId', 'o.quantity_order AS   ', 'p.name AS pdtName', 'pa.reference AS refParcel', 'pa.occupancy AS occupancy', 'pa.storage AS storage','pack.id AS packId' ,'pack.quantity_max AS qtyMax')
+           ->from('App\Entity\Orders', 'o')
+           ->leftJoin('App\Entity\Products', 'p', 'WITH', 'o.id_products = p.id')
+           ->leftJoin('App\Entity\Packages', 'pa', 'WITH', 'p.id_packages = pa.id')
+           ->leftJoin('App\Entity\Packagings', 'pack', 'WITH', 'pack.id_packages = pa.id')
+           ->where('o.delivered_at IS NULL')
+           ->andWhere('pack.id_product = o.id_products')
+           ->setMaxResults(4);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
     }
 }
