@@ -16,12 +16,12 @@
 <p> Nombre cartons : {{ (a / b)|round(0, 'floor') }}</p>
 <p>The remainder of {{ a }} divided by {{ b }} is {{ a%b }}.</p>  #}
 
-{% for result in results %}
+{# {% for result in results %}
     {% set a = result['orderQty'] %}
     {% set b = result['qtyMax'] %}
     
     <p>{{ result['cmdId'] }} {{ result['orderQty'] }} {{ result['pdtName'] }} {{ result['refParcel'] }} {{ result['occupancy'] }} Nombre cartons : {{ (a / b)|round(0, 'floor') }} The remainder of {{ a }} divided by {{ b }} is {{ a%b }}.}}</p>
-{% endfor %}
+{% endfor %} #}
 
 <br>
 <br>

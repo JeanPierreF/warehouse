@@ -22,7 +22,7 @@ class MainController extends AbstractController
     public function index(): Response
     {
         
-        $qb = $this->em->createQueryBuilder();
+    /*     $qb = $this->em->createQueryBuilder();
 
         $qb->select('o.id AS cmdId', 'o.quantity_order AS   ', 'p.name AS pdtName', 'pa.reference AS refParcel', 'pa.occupancy AS occupancy', 'pa.storage AS storage','pack.id AS packId' ,'pack.quantity_max AS qtyMax')
            ->from('App\Entity\Orders', 'o')
@@ -33,11 +33,11 @@ class MainController extends AbstractController
            ->andWhere('pack.id_product = o.id_products')
            ->setMaxResults(4);
 
-        $query = $qb->getQuery();
+        $query = $qb->getQuery(); */
         /* $query->setParameter('orderId', 356); */
 
         //$results = $query->getArrayResult();
-        $results = $query->getResult();
+        /* $results = $query->getResult(); */
 
 /*         $qb = $this->em->createQueryBuilder();
 
@@ -52,6 +52,6 @@ class MainController extends AbstractController
   /*       dd($results); */
         
        
-        return $this->render('main/index.html.twig', ['results' => $results]);
+        return $this->render('main/index.html.twig', []);
     }
 }
