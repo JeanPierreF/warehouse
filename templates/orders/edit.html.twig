@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <h1>{{ orders.id }} </h1>
+        <h1>Commande n°{{ orders.id }} </h1>
         <p>{{ orders.getDateOrder ? orders.getDateOrder|date('d-m-Y H:i:s', 'Europe/Paris') : 'N/A' }}</p>
         
         {{ form(formedit) }}

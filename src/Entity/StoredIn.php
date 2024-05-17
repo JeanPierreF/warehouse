@@ -24,6 +24,11 @@ class StoredIn
     #[ORM\JoinColumn(nullable: false)]
     private ?storages $id_storages = null;
 
+    public function __construct()
+    {
+        $this->entered_at = new \DateTimeImmutable();
+    }
+
     public function getEnteredAt(): ?\DateTimeImmutable
     {
         return $this->entered_at;

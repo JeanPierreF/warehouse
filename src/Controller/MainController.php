@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Orders;
+use App\Repository\ParcelsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,7 +19,7 @@ class MainController extends AbstractController
     }
 
     #[Route('/', name: 'main')]
-    public function index(): Response
+    public function index(ParcelsRepository $parcelsRepository): Response
     {
         
     /*     $qb = $this->em->createQueryBuilder();
@@ -51,7 +51,10 @@ class MainController extends AbstractController
 
   /*       dd($results); */
         
+        $parcelsList = $parcelsRepository->parcelsList();
        
-        return $this->render('main/index.html.twig', []);
+        return $this->render('main/index.html.twig', [
+            'parcelsList' => $parcelsList,
+        ]);
     }
 }

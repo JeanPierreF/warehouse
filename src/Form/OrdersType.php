@@ -38,13 +38,13 @@ class OrdersType extends AbstractType
                 ])
 
             ])
-            ->add('quantity_order')
-            ->add('delivered_at', null, [
-                'widget' => 'single_text',
-            ])
             ->add('id_products', EntityType::class, [
                 'class' => products::class,
                 'choice_label' => 'name',
+            ])
+            ->add('quantity_order')
+            ->add('delivered_at', null, [
+                'widget' => 'single_text',
             ])
 
             ->add('Enregistrer', SubmitType::class)

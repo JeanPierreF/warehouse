@@ -21,6 +21,22 @@ class ParcelsRepository extends ServiceEntityRepository
         parent::__construct($registry, Parcels::class);
     }
 
+    public function parcelsList(): array
+    {
+        // Création du QueryBuilder
+        $queryBuilder = $this->createQueryBuilder('parcels');
+
+        // Construction de la requête
+        $queryBuilder
+            ->select('parcels.id AS parcelId', 'packages.occupancy AS occupancy', 'packages.storage AS package')
+            ->leftJoin('App\Entity\Packagings', 'packagings', 'WITH', 'parcels.id_packagings = packagings.id')
+            ->leftJoin('App\Entity\Packages', 'packages', 'WITH', 'packagings.id_packages = packages.id')
+            ->orderBy('parcelId', 'ASC');
+        
+        // Exécution de la requête et retour du résultat
+        return $queryBuilder->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Parcels[] Returns an array of Parcels objects
     //     */
