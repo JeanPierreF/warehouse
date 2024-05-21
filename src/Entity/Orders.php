@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Trait\CreatedAtTrait;
+
 use App\Repository\OrdersRepository;
 use Doctrine\ORM\Mapping as ORM;
+Use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrdersRepository::class)]
 class Orders
@@ -17,18 +18,22 @@ class Orders
     private ?int $id = null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeImmutable $date_order = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $supplier_name = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero()]
     private ?int $quantity_order = 0;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?products $id_products = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeImmutable $delivered_at = null;
 
     public function __construct()

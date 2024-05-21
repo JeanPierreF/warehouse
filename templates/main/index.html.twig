@@ -23,9 +23,7 @@
     <p>{{ result['cmdId'] }} {{ result['orderQty'] }} {{ result['pdtName'] }} {{ result['refParcel'] }} {{ result['occupancy'] }} Nombre cartons : {{ (a / b)|round(0, 'floor') }} The remainder of {{ a }} divided by {{ b }} is {{ a%b }}.}}</p>
 {% endfor %} #}
 
-{% for parcel in parcelsList %}
-    <p>{{ parcel.parcelId }} - {{ parcel.occupancy }} - {{ parcel.package }}</p>
-{% endfor %}
+<h3>Test</h3>
 
 <br>
 <br>

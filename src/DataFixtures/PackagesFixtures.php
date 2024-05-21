@@ -11,10 +11,10 @@ class PackagesFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        $this->createPackage('Carton A', 60, 30, 40, false, 2, 'Secteur A',$manager);
-        $this->createPackage('Carton B', 40, 30, 40, true, 2, 'Secteur B',$manager);
-        $this->createPackage('Carton C', 60, 30, 20, false, 1, 'Secteur A',$manager);
-        $this->createPackage('Carton D', 40, 30, 20, true, 1, 'Secteur B',$manager);
+        $this->createPackage('Carton A', 60, 30, 40, false, 2, 'A',$manager);
+        $this->createPackage('Carton B', 40, 30, 40, true, 2, 'B',$manager);
+        $this->createPackage('Carton C', 60, 30, 20, false, 1, 'A',$manager);
+        $this->createPackage('Carton D', 40, 30, 20, true, 1, 'B',$manager);
 
         $manager->flush();
     }

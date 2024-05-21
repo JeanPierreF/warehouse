@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ParcelsRepository;
+use App\Services\FindStorageFree;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,7 +20,7 @@ class MainController extends AbstractController
     }
 
     #[Route('/', name: 'main')]
-    public function index(ParcelsRepository $parcelsRepository): Response
+    public function index(FindStorageFree $findStorageFree): Response
     {
         
     /*     $qb = $this->em->createQueryBuilder();
@@ -51,10 +52,18 @@ class MainController extends AbstractController
 
   /*       dd($results); */
         
-        $parcelsList = $parcelsRepository->parcelsList();
+/*         $parcelsList = $parcelsRepository->parcelsList();*/
+
+
+/*         $result = $findStorageFree->getFreeStorage();
        
         return $this->render('main/index.html.twig', [
-            'parcelsList' => $parcelsList,
-        ]);
+            'result' => $result,
+        ]); */
+
+        return $this->render('main/index.html.twig', []);
+
+
+
     }
 }

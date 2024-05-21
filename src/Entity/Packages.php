@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+Use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PackagesRepository::class)]
 class Packages
@@ -17,21 +18,29 @@ class Packages
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 3, max: 255)]
     private ?string $reference = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
     private ?int $length = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
     private ?int $width = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
     private ?int $height = null;
 
     #[ORM\Column]
     private ?bool $palletizable = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank()]
+    #[Assert\Positive()]
+    
     private ?int $occupancy = null;
 
     #[ORM\Column(length: 255)]
