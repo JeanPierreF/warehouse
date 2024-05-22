@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Packages liste{% endblock %}
+
+{% block body %}
+<h1>Liste des conditionnements </h1>
+<p><a href={{ path('packages_add') }} class="btn btn-primary bt-sm">Ajouter</a></p>
+
+<table class="table table-succes table-striped">
+    <thead>
+        <tr>
+            <th>
+                ID
+                <a href="{{ path('packages_index', {'sort': 'id', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'id', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'desc' ? 'selected' : '' }}" >▼</a>
+            </th>
+            <th>
+                Référence
+                <a href="{{ path('packages_index', {'sort': 'reference', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'reference' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'reference', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'reference' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Longueur
+                <a href="{{ path('packages_index', {'sort': 'length', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'length' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'length', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'length' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Largeur
+                <a href="{{ path('packages_index', {'sort': 'width', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'width' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'width', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'width' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Hauteur
+                <a href="{{ path('packages_index', {'sort': 'height', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'height' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'height', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'height' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Paletissable
+                <a href="{{ path('packages_index', {'sort': 'palletizable', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'palletizable' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'palletizable', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'palletizable' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Volume unitaire
+                <a href="{{ path('packages_index', {'sort': 'occupancy', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'occupancy' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'occupancy', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'occupancy' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Type de stockage
+                <a href="{{ path('packages_index', {'sort': 'storage', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'storage' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('packages_index', {'sort': 'storage', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'storage' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    {% for package in packages %}
+    <tr>
+        <td>{{ package.getId() }}</td>
+        <td>{{ package.getReference() }}</td>
+        <td>{{ package.getLength() }}</td>
+        <td>{{ package.getWidth() }}</td>
+        <td>{{ package.getHeight() }}</td>
+        <td>{{ package.isPalletizable() == 0 ? 'Non' : 'Oui' }}</td>
+        <td>{{ package.getOccupancy() }}</td>
+        <td>{{ package.getStorage() }}</td>
+        <td><a href={{ path('packages_edit', { id:package.id } )}} class="btn btn-primary bt-sm">Modifier</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<style>
+    a.sort-link {
+        color: inherit;
+        text-decoration: none;
+    }
+    a.sort-link.selected {
+        color: aquamarine;
+    }
+</style>
+{% endblock %}

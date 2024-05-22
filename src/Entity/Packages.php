@@ -40,10 +40,10 @@ class Packages
     #[ORM\Column(type: Types::SMALLINT)]
     #[Assert\NotBlank()]
     #[Assert\Positive()]
-    
     private ?int $occupancy = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $storage = null;
 
     #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'id_packages')]
