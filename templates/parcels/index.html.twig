@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container">
     <div class="row">
-            <h1>Liste des conditionnements</h1>
+            <h1>Liste conditionnements auto</h1>
             {# <p><a href={{ path('products_add') }} class="btn btn-primary bt-sm">Ajouter</a></p> #}
             <table class="table table-succes table-striped">
                     <thead>
@@ -28,7 +28,7 @@
                             <td>{{ parcel.getIdPackagings().getQuantityMax()}}</td>
                             <td>{{ parcel.eancode }}</td>
                             <td>{{ parcel.quantity }}</td>
-                            {# <td><a href={{ path('products_edit', { id:parcel.id } )}} class="btn btn-primary bt-sm">Modifier</a></td> #}
+                            <td><a href={{ path('products_edit', { id:parcel.id } )}} class="btn btn-primary bt-sm disabled" >Modifier</a></td>
                     </tr>
                     {% endfor %}
             </table>
