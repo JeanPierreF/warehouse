@@ -21,6 +21,23 @@ class OrdersRepository extends ServiceEntityRepository
         parent::__construct($registry, Orders::class);
     }
 
+     public function getOrderList()
+    {
+        $entityManager = $this->getEntityManager();
+    
+        $query = $entityManager->createQueryBuilder()
+            ->select('o.id', 'o.date_order', 'o.supplier_name', 'o.quantity_order', 'p.name as product_name', 'o.delivered_at')
+            ->from('App\Entity\Orders', 'o')
+            ->leftJoin('o.id_products', 'p')
+            ->getQuery();
+
+            //dd($query->execute());
+    
+        return $query->execute();
+    }
+ 
+
+
     //    /**
     //     * @return Orders[] Returns an array of Orders objects
     //     */

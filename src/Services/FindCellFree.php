@@ -35,7 +35,8 @@ class FindCellFree
                 ORDER BY `filtered_stored_in`.`id_parcels_id` DESC
             ) AS sub
             WHERE sub.remaining_quantity > 0 AND sub.type = 'A'
-            ORDER BY `sub`.`id` ASC;
+            ORDER BY `sub`.`id` ASC 
+            LIMIT 20;
         ";
     
         $stmt = $conn->executeQuery($sql);

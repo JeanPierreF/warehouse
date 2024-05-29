@@ -47,12 +47,12 @@
     </thead>
     {% for order in orders %}
     <tr>
-        <td>{{ order.getId() }}</td>
-        <td>{{ order.getDateOrder()|date('d-m-Y', 'Europe/Paris') }}</td>
-        <td>{{ order.getSupplierName() }}</td>
-        <td>{{ order.getQuantityOrder() }}</td>
-        <td>{{ order.getIdProducts().getName() }}</td>
-        <td>{{ order.getDeliveredAt() is not null ? order.getDeliveredAt()|date('d-m-Y', 'Europe/Paris') : 'Non livré' }}</td>
+        <td>{{ order.id }}</td>
+        <td>{{ order.date_order|date('d-m-Y', 'Europe/Paris') }}</td>
+        <td>{{ order.supplier_name }}</td>
+        <td>{{ order.quantity_order }}</td>
+        <td>{{ order.product_name }}</td>
+        <td>{{ order.delivered_at is not null ? order.getDeliveredAt()|date('d-m-Y', 'Europe/Paris') : 'Non livré' }}</td>
         <td><a href={{ path('orders_edit', { id:order.id } )}} class="btn btn-primary bt-sm">Modifier</a></td>
     </tr>
     {% endfor %}

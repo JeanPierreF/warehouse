@@ -58,7 +58,7 @@ class MainController extends AbstractController
         $result = $findCellFree->findFreeStorage();
        
         return $this->render('main/index.html.twig', [
-            'result' => $result,
+            'results' => $result,
         ]);
 
         
