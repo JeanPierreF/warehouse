@@ -24,7 +24,8 @@ class OrdersController extends AbstractController
         dump('DIRECTION'.$direction);
 
         if ($sort && $direction) {
-            $orders = $ordersRepository->findBy([], [$sort => $direction]);
+            //$orders = $ordersRepository->findBy([], [$sort => $direction]);
+            $orders = $ordersRepository->getOrderList($sort, $direction);
         } else {
             //$orders = $ordersRepository->findAll();
             $orders = $ordersRepository->getOrderList();

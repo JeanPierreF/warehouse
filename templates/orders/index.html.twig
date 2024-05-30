@@ -32,8 +32,8 @@
             </th>
             <th>
                 Nom du produit
-                <a href="{{ path('orders_index', {'sort': 'id_products', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id_products' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'id_products', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id_products' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+                <a href="{{ path('orders_index', {'sort': 'product_name', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'product_name' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+                <a href="{{ path('orders_index', {'sort': 'product_name', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'product_name' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
             </th>
             <th>
                 Date de livraison

@@ -21,20 +21,37 @@ class OrdersRepository extends ServiceEntityRepository
         parent::__construct($registry, Orders::class);
     }
 
-     public function getOrderList()
+
+        
+    /**
+     * getOrderList
+     *
+     * @param  string $sortField
+     * @param  string $sortDirection 
+     * @return array Returns an array of string
+     */
+    public function getOrderList($sortField = 'id', $sortDirection = 'asc'):array
     {
         $entityManager = $this->getEntityManager();
     
-        $query = $entityManager->createQueryBuilder()
+        $queryBuilder = $entityManager->createQueryBuilder()
             ->select('o.id', 'o.date_order', 'o.supplier_name', 'o.quantity_order', 'p.name as product_name', 'o.delivered_at')
             ->from('App\Entity\Orders', 'o')
-            ->leftJoin('o.id_products', 'p')
-            ->getQuery();
-
-            //dd($query->execute());
+            ->leftJoin('o.id_products', 'p');
     
-        return $query->execute();
+        if ($sortField === 'product_name') {
+            $queryBuilder->orderBy('p.name', $sortDirection);
+        } else {
+            $queryBuilder->orderBy('o.' . $sortField, $sortDirection);
+        }
+    
+        $results = $queryBuilder->getQuery()->getArrayResult();
+
+        return $results;
     }
+    
+    
+    
  
 
 
