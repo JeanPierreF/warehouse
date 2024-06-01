@@ -15,14 +15,24 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(ProductsRepository $productsRepository): Response
+    public function index(Request $request, ProductsRepository $productsRepository): Response
     {
+        $sort = $request->query->get('sort');
+        $direction = $request->query->get('direction');
+
+        if ($sort && $direction) {
+            $products = $productsRepository->findProductsWithPackage($sort, $direction);
+        } else {
+            $products = $productsRepository->findProductsWithPackage();
+        }
        
         return $this->render('products/index.html.twig', 
         [
-            'products' => $productsRepository->findProductsWithPackage()
+            'products' => $products
         ]);
     }
+
+
 
      #[Route('/{id}', name: 'detail', requirements: ['id' => '\d+'])]
     public function detail(Products $product): Response

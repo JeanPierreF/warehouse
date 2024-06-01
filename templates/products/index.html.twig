@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% import 'macros/sort.html.twig' as sorts %}
 
 {% block title %}Hello ProductsController!{% endblock %}
 
@@ -12,10 +13,10 @@
                 <table class="table table-succes table-striped">
                         <thead>
                                 <tr>
-                                        <th>Nom</a></th>
-                                        <th>Date de création</a></th>
-                                        <th>Référence du package</a></th>
-                                        <th>Date de création</a></th>
+                                        {{ sorts.sort_link('products_index', 'id', 'ID') }}
+                                        {{ sorts.sort_link('products_index', 'name', 'Nom du produit') }}
+                                        {{ sorts.sort_link('products_index', 'package_reference', 'Conditionnement') }}
+                                        {{ sorts.sort_link('products_index', 'created_at', 'Date de création') }}
                                         <th scope="col">Action</th>
 
                                 </tr>
@@ -35,7 +36,15 @@
         </div>
 </div>
 
-
+<style>
+    a.sort-link {
+        color: inherit;
+        text-decoration: none;
+    }
+    a.sort-link.selected {
+        color: aquamarine;
+    }
+</style>
 
 
 {% endblock %}

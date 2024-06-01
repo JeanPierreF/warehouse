@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% import 'macros/sort.html.twig' as sorts %}
 
 {% block title %}Liste des Commandes{% endblock %}
 
@@ -10,39 +11,13 @@
 <table class="table table-succes table-striped">
     <thead>
         <tr>
-            <th>
-                ID
-                <a href="{{ path('orders_index', {'sort': 'id', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'id', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'id' and app.request.get('direction') == 'desc' ? 'selected' : '' }}" >▼</a>
-            </th>
-            <th>
-                Date de la commande
-                <a href="{{ path('orders_index', {'sort': 'date_order', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'date_order' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'date_order', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'date_order' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
-            </th>
-            <th>
-                Nom du fournisseur
-                <a href="{{ path('orders_index', {'sort': 'supplier_name', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'supplier_name' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'supplier_name', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'supplier_name' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
-            </th>
-            <th>
-                Quantité commandée
-                <a href="{{ path('orders_index', {'sort': 'quantity_order', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'quantity_order' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'quantity_order', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'quantity_order' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
-            </th>
-            <th>
-                Nom du produit
-                <a href="{{ path('orders_index', {'sort': 'product_name', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'product_name' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'product_name', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'product_name' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
-            </th>
-            <th>
-                Date de livraison
-                <a href="{{ path('orders_index', {'sort': 'delivered_at', 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == 'delivered_at' and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
-                <a href="{{ path('orders_index', {'sort': 'delivered_at', 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == 'delivered_at' and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
-            </th>
-            <th>
-                Action
-            </th>
+            {{ sorts.sort_link('orders_index', 'id', 'ID') }}
+            {{ sorts.sort_link('orders_index', 'date_order', 'Date de la commande') }}
+            {{ sorts.sort_link('orders_index', 'supplier_name', 'Nom du fournisseur') }}
+            {{ sorts.sort_link('orders_index', 'quantity_order', 'Quantité commandée') }}
+            {{ sorts.sort_link('orders_index', 'product_name', 'Nom du produit') }}
+            {{ sorts.sort_link('orders_index', 'delivered_at', 'Date de livraison') }}
+            <th>Action</th>
         </tr>
     </thead>
     {% for order in orders %}
@@ -68,3 +43,4 @@
 </style>
 
 {% endblock %}
+

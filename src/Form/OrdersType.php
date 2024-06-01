@@ -32,7 +32,7 @@ class OrdersType extends AbstractType
                         maxMessage: 'Pour le nom des produits il faut 255 carartéres maximun.'
                     ),
                     new Regex(
-                        '/^[a-zA-Z0-9. ]+(?:-[a-zA-Z0-9. ]+)*$/',
+                        '/^[a-zA-Z0-9. œ]+(?:-[a-zA-Z0-9. œ]+)*$/',
                         message:'Certains caractères ne sont pas acceptés'
                     ) 
                 ])

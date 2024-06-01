@@ -1,0 +1,7 @@
+{% macro sort_link(path, column, title) %}
+    <th>
+        {{ title }}
+        <a href="{{ path(path , {'sort': column, 'direction': 'asc'}) }}" class="sort-link {{ app.request.get('sort') == column and app.request.get('direction') == 'asc' ? 'selected' : '' }}">▲</a>
+        <a href="{{ path(path , {'sort': column, 'direction': 'desc'}) }}" class="sort-link {{ app.request.get('sort') == column and app.request.get('direction') == 'desc' ? 'selected' : '' }}">▼</a>
+    </th>
+{% endmacro %}
