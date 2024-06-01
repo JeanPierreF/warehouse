@@ -26,7 +26,7 @@ class Products
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?packages $id_packages = null;
+    private ?Packages $id_packages = null;
 
     #[ORM\OneToMany(targetEntity: Orders::class, mappedBy: 'id_products')]
     private Collection $orders;

@@ -24,39 +24,14 @@ class ProductsRepository extends ServiceEntityRepository
 
     public function findProductsWithPackage()
     {
-        $entityManager = $this->getEntityManager();
     
-        $query = $entityManager->createQueryBuilder()
+        $query = $this->createQueryBuilder('p')
             ->select('p.id', 'p.name', 'p.created_at', 'pkg.reference as package_reference')
-            ->from('App\Entity\Products', 'p')
             ->leftJoin('p.id_packages', 'pkg')
             ->getQuery();
     
-        return $query->execute();
+        return $query->getResult();
     }
 
-    //    /**
-    //     * @return Products[] Returns an array of Products objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
 
-    //    public function findOneBySomeField($value): ?Products
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

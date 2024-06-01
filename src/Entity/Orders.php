@@ -30,7 +30,7 @@ class Orders
     private ?int $quantity_order = 0;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?products $id_products = null;
+    private ?Products $id_products = null;
 
     #[ORM\Column(nullable: true)]
     #[Assert\GreaterThanOrEqual('today')]
