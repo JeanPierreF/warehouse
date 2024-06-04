@@ -6,6 +6,7 @@
 {% block body %}
 
 
+
 <div class="container">
         <div class="row">
                 <h1>Liste des produits</h1>
@@ -21,12 +22,11 @@
 
                                 </tr>
 
-
                         </thead>
                         {% for product in products %}
                         <tr>
                                 <td>{{ product.id }}</td>
-                                <td>{{ product.name }}</td>
+                                <td><a href={{ path('products_detail', { id:product.id } )}} >{{ product.name }}</a></td>
                                 <td>{{ product.package_reference }}</td>
                                 <td>{{ product.created_at ? product.created_at|date('Y-m-d H:i:s', 'Europe/Paris') : 'N/A' }}</td>
                                 <td><a href={{ path('products_edit', { id:product.id } )}} class="btn btn-primary bt-sm">Modifier</a></td>

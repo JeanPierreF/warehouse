@@ -17,12 +17,12 @@ class StoredIn
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'storedIns')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?parcels $id_parcels = null;
+    private ?Parcels $id_parcels = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'storedIns')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?storages $id_storages = null;
+    private ?Storages $id_storages = null;
 
     public function __construct()
     {
@@ -53,24 +53,24 @@ class StoredIn
         return $this;
     }
 
-    public function getIdParcels(): ?parcels
+    public function getIdParcels(): ?Parcels
     {
         return $this->id_parcels;
     }
 
-    public function setIdParcels(?parcels $id_parcels): static
+    public function setIdParcels(?Parcels $id_parcels): static
     {
         $this->id_parcels = $id_parcels;
 
         return $this;
     }
 
-    public function getIdStorages(): ?storages
+    public function getIdStorages(): ?Storages
     {
         return $this->id_storages;
     }
 
-    public function setIdStorages(?storages $id_storages): static
+    public function setIdStorages(?Storages $id_storages): static
     {
         $this->id_storages = $id_storages;
 

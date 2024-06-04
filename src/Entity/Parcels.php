@@ -23,11 +23,11 @@ class Parcels
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?orders $id_order = null;
+    private ?Orders $id_order = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?packagings $id_packagings = null;
+    private ?Packagings $id_packagings = null;
 
     #[ORM\OneToMany(targetEntity: StoredIn::class, mappedBy: 'id_parcels')]
     private Collection $storedIns;
@@ -66,24 +66,24 @@ class Parcels
         return $this;
     }
 
-    public function getIdOrder(): ?orders
+    public function getIdOrder(): ?Orders
     {
         return $this->id_order;
     }
 
-    public function setIdOrder(?orders $id_order): static
+    public function setIdOrder(?Orders $id_order): static
     {
         $this->id_order = $id_order;
 
         return $this;
     }
 
-    public function getIdPackagings(): ?packagings
+    public function getIdPackagings(): ?Packagings
     {
         return $this->id_packagings;
     }
 
-    public function setIdPackagings(?packagings $id_packagings): static
+    public function setIdPackagings(?Packagings $id_packagings): static
     {
         $this->id_packagings = $id_packagings;
 

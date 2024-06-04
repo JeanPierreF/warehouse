@@ -59,12 +59,12 @@ class Products
         return $this;
     }
 
-    public function getIdPackages(): ?packages
+    public function getIdPackages(): ?Packages
     {
         return $this->id_packages;
     }
 
-    public function setIdPackages(?packages $id_packages): static
+    public function setIdPackages(?Packages $id_packages): static
     {
         $this->id_packages = $id_packages;
 

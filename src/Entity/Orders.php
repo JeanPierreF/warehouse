@@ -82,12 +82,12 @@ class Orders
         return $this;
     }
 
-    public function getIdProducts(): ?products
+    public function getIdProducts(): ?Products
     {
         return $this->id_products;
     }
 
-    public function setIdProducts(?products $id_products): static
+    public function setIdProducts(?Products $id_products): static
     {
         $this->id_products = $id_products;
 

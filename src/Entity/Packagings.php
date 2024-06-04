@@ -18,11 +18,11 @@ class Packagings
 
     #[ORM\ManyToOne(inversedBy: 'packagings')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?products $id_product = null;
+    private ?Products $id_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'packagings')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?packages $id_packages = null;
+    private ?Packages $id_packages = null;
 
     public function getId(): ?int
     {
@@ -41,24 +41,24 @@ class Packagings
         return $this;
     }
 
-    public function getIdProduct(): ?products
+    public function getIdProduct(): ?Products
     {
         return $this->id_product;
     }
 
-    public function setIdProduct(?products $id_product): static
+    public function setIdProduct(?Products $id_product): static
     {
         $this->id_product = $id_product;
 
         return $this;
     }
 
-    public function getIdPackages(): ?packages
+    public function getIdPackages(): ?Packages
     {
         return $this->id_packages;
     }
 
-    public function setIdPackages(?packages $id_packages): static
+    public function setIdPackages(?Packages $id_packages): static
     {
         $this->id_packages = $id_packages;
 
