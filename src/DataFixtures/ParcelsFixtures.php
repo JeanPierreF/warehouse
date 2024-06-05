@@ -25,32 +25,41 @@ class ParcelsFixtures extends Fixture implements DependentFixtureInterface
         $faker = Faker\Factory::create();
         $results = $this->getDataParcel();
 
-        foreach ($results as $result) {
-            $qtyMax = $result['qtyMax'];
-            $orderQty = $result['orderQty'];
+        try{        
+            
+            foreach ($results as $result) {
+                $qtyMax = $result['qtyMax'];
+                $orderQty = $result['orderQty'];
 
-            if ($qtyMax === 0) {
-                continue; // Skip if qtyMax is zero to avoid division by zero
+                if ($qtyMax === 0) {
+                    continue; // Skip if qtyMax is zero to avoid division by zero
+                }
+
+                // Calculate the number of fully filled packages
+                $numberOfParcels = intdiv($orderQty, $qtyMax);
+
+                // Check if there are any remaining products and add a package if necessary
+                $finishParcelQty = $orderQty % $qtyMax;
+                $totalOfParcels = $finishParcelQty > 0 ? $numberOfParcels + 1 : $numberOfParcels;
+
+                for ($parcelNum = 1; $parcelNum <= $totalOfParcels; $parcelNum++) {
+                    $parcel = new Parcels();
+                    $quantity = ($finishParcelQty > 0 && $parcelNum == $totalOfParcels) ? $finishParcelQty : $qtyMax;
+
+                    $parcel->setQuantity($quantity);
+                    $parcel->setIdOrder($this->em->getRepository(Orders::class)->find($result['cmdId']));
+                    $parcel->setIdPackagings($this->em->getRepository(Packagings::class)->find($result['packId']));
+                    $parcel->setEancode($faker->ean13());
+
+                    $manager->persist($parcel);
+                }
             }
 
-            $numberOfParcels = intdiv($orderQty, $qtyMax);
-            $finishParcelQty = $orderQty % $qtyMax;
-            $totalOfParcels = $finishParcelQty > 0 ? $numberOfParcels + 1 : $numberOfParcels;
+            $manager->flush();
 
-            for ($parcelNum = 1; $parcelNum <= $totalOfParcels; $parcelNum++) {
-                $parcel = new Parcels();
-                $quantity = ($finishParcelQty > 0 && $parcelNum == $totalOfParcels) ? $finishParcelQty : $qtyMax;
-
-                $parcel->setQuantity($quantity);
-                $parcel->setIdOrder($this->em->getRepository(Orders::class)->find($result['cmdId']));
-                $parcel->setIdPackagings($this->em->getRepository(Packagings::class)->find($result['packId']));
-                $parcel->setEancode($faker->ean13());
-
-                $manager->persist($parcel);
-            }
+        } catch (\Exception $e) {
+            throw $e;
         }
-
-        $manager->flush();
     }
 
     public function getDependencies()
@@ -74,3 +83,14 @@ class ParcelsFixtures extends Fixture implements DependentFixtureInterface
         return $qb->getQuery()->getResult();
     }
 }
+
+
+/* new sql
+SELECT o.id, o.quantity_order, p.occupancy, p.storage, pkg.id, pkg.quantity_max
+FROM `orders` as o
+	LEFT JOIN `products` ON o.`id_products_id` = `products`.`id` 
+	LEFT JOIN `packages` AS p ON `products`.`id_packages_id` = p.`id` 
+	LEFT JOIN `packagings` As pkg ON pkg.`id_packages_id` = p.`id`
+    
+WHERE pkg.id_product_id = o.id_products_id AND o.delivered_at IS NULL
+ORDER BY o.id; */
