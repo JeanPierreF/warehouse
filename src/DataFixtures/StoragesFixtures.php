@@ -18,9 +18,10 @@ class StoragesFixtures extends Fixture implements FixtureGroupInterface
             for($rank = 1; $rank <= 4; $rank++ ){
 
                 $cells = new Storages();
+                //sprintf('%06d', $nombre)
     
                 $cells->setType('A');
-                $cells->setEmplacement('A-'.$cell.'-'.$rank);
+                $cells->setEmplacement('A-'.sprintf('%06d', $cell).'-'.sprintf('%02d', $rank));
                 $cells->setQuantity(2);
     
                 $manager->persist($cells);
@@ -37,7 +38,7 @@ class StoragesFixtures extends Fixture implements FixtureGroupInterface
                 $cells = new Storages();
     
                 $cells->setType('B');
-                $cells->setEmplacement('B-'.$cell.'-'.$rank);
+                $cells->setEmplacement('B-'.sprintf('%06d', $cell).'-'.sprintf('%02d', $rank));
                 $cells->setQuantity(2);
     
                 $manager->persist($cells);
