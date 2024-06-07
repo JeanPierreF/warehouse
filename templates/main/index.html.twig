@@ -13,7 +13,7 @@
 
 {% for result in results %}
   
-    <p>{{ result['id'] }} {{ result['type'] }} {{ result['emplacement'] }} {{ result['quantity'] }} {{ result['remaining_quantity'] }}</p>
+    <p>Id: {{ result['id'] }} - Zone: {{ result['type'] }} - Emplacement: {{ result['emplacement'] }} - Capacité: {{ result['quantity'] }} - Disponible: {{ result['remaining_quantity'] }}</p>
 {% endfor %}
  
 

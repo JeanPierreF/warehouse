@@ -22,8 +22,8 @@ class MainController extends AbstractController
     #[Route('/', name: 'main')]
     public function index(FindCellFree $findCellFree): Response
     {
-        $type ='B';
-        $result = $findCellFree->findFreeStorage($type,10);
+        $type ='A';
+        $result = $findCellFree->findFreeStorage($type, 10, 2);
        
         return $this->render('main/index.html.twig', [
             'results' => $result,

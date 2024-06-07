@@ -71,26 +71,16 @@ class ParcelsFixtures extends Fixture implements DependentFixtureInterface
     {
         $qb = $this->em->createQueryBuilder();
 
-        $qb->select('o.id AS cmdId', 'o.quantity_order AS orderQty', 'p.name AS pdtName', 'pa.reference AS refParcel', 'pa.occupancy AS occupancy', 'pa.storage AS storage', 'pack.id AS packId', 'pack.quantity_max AS qtyMax')
+        $qb->select('o.id AS cmdId', 'o.quantity_order AS orderQty', 'pa.occupancy AS occupancy', 'pa.storage AS storage', 'pkg.id AS packId', 'pkg.quantity_max AS qtyMax')
             ->from('App\Entity\Orders', 'o')
-            ->leftJoin('App\Entity\Products', 'p', 'WITH', 'o.id_products = p.id')
-            ->leftJoin('App\Entity\Packages', 'pa', 'WITH', 'p.id_packages = pa.id')
-            ->leftJoin('App\Entity\Packagings', 'pack', 'WITH', 'pack.id_packages = pa.id')
+            ->leftJoin('App\Entity\Products', 'pdt' ,'WITH', 'o.id_products = pdt.id')
+            ->leftJoin('App\Entity\Packages', 'pa', 'WITH', 'pdt.id_packages = pa.id')
+            ->leftJoin('App\Entity\Packagings', 'pkg', 'WITH', 'pkg.id_packages = pa.id')
             ->where('o.delivered_at IS NULL')
-            ->andWhere('pack.id_product = o.id_products')
+            ->andWhere('pkg.id_product = o.id_products')
             ->setMaxResults(4);
 
         return $qb->getQuery()->getResult();
     }
 }
 
-
-/* new sql
-SELECT o.id, o.quantity_order, p.occupancy, p.storage, pkg.id, pkg.quantity_max
-FROM `orders` as o
-	LEFT JOIN `products` ON o.`id_products_id` = `products`.`id` 
-	LEFT JOIN `packages` AS p ON `products`.`id_packages_id` = p.`id` 
-	LEFT JOIN `packagings` As pkg ON pkg.`id_packages_id` = p.`id`
-    
-WHERE pkg.id_product_id = o.id_products_id AND o.delivered_at IS NULL
-ORDER BY o.id; */

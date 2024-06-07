@@ -27,14 +27,22 @@ class FindCellFree
                 GROUP BY `storages`.`id`, `packages`.`occupancy`, `packages`.`storage`
                 ORDER BY `filtered_stored_in`.`id_parcels_id` DESC
             ) AS sub
-            WHERE sub.remaining_quantity > 0 AND sub.type = :type
+            WHERE sub.remaining_quantity > 0 AND sub.type = :type AND sub.remaining_quantity = :space
             ORDER BY `sub`.`id` ASC 
             LIMIT :limit;
             ";
     }
     
-
-    public function findFreeStorage(string $type, int $limit): array
+    
+    /**
+     * findFreeStorage
+     *
+     * @param  sting $type Type de colis
+     * @param  int $limit Nombre d'emplacements proposés
+     * @param  int $space taille des emplacements proposés
+     * @return array
+     */
+    public function findFreeStorage(string $type, int $limit, int $space): array
     {
         $conn = $this->entityManager->getConnection();
     
@@ -42,8 +50,8 @@ class FindCellFree
     
         return $conn->executeQuery(
             $sql,
-            ['type' => $type, 'limit' => $limit],
-            ['type' => \Doctrine\DBAL\Types\Types::STRING, 'limit' => \Doctrine\DBAL\ParameterType::INTEGER]
+            ['type' => $type, 'limit' => $limit, 'space' =>$space],
+            ['type' => \Doctrine\DBAL\Types\Types::STRING, 'limit' => \Doctrine\DBAL\ParameterType::INTEGER, 'space' => \Doctrine\DBAL\ParameterType::INTEGER ]
         )->fetchAllAssociative();
     }
     
