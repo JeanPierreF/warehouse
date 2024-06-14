@@ -9,17 +9,28 @@
 <p>{{ "now"|date("d/m/Y H:i:s", "europe/paris") }}</p>
 <br>
 
-
+<h3>Test</h3>
+<h4>Emplacements</h4>
 
 {% for result in results %}
   
     <p>Id: {{ result['id'] }} - Zone: {{ result['type'] }} - Emplacement: {{ result['emplacement'] }} - Capacité: {{ result['quantity'] }} - Disponible: {{ result['remaining_quantity'] }}</p>
 {% endfor %}
  
+<h4>Colis à créer</h4>
 
+{% for parcel in parcels %}
+    <p>Order Id: {{ parcel['cmdId'] }} - quantité commandée: {{ parcel['orderQty'] }} - Volume: {{ parcel['occupancy'] }} - Zone: {{ parcel['storage'] }} Quantité maximun {{ parcel['qtyMax'] }}</p>
+{% endfor %}
 
+<h4>Colis à placer</h4>
 
-<h3>Test</h3>
+    {% for final in finals %}
+
+        <p>Parcel ID: {{ final.id }} - Order Id: {{ final.getIdOrder.getId }}  - Quantité dans le colis {{ final.quantity }}/{{ final.getIdPackagings.getQuantityMax }} - Colis: {{ final.getIdPackagings.getIdPackages.getReference }} - Volume: {{ final.getIdPackagings.getIdPackages.getOccupancy }} - Zone: {{ final.getIdPackagings.getIdPackages.getStorage }}</p>
+        
+    {% endfor %}
+
 
 <br>
 <br>
